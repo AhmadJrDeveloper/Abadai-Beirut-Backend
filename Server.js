@@ -1,6 +1,5 @@
 //////////////////IMPORTING ROUTES/////////////////////////////////
-const categoriesRoutes = require ('./Routes/categoriesRoutes')   //
-const productsRoutes = require ('./Routes/productsRoutes')       //
+                                                                 //
 const inboxRoutes = require ('./Routes/inboxRoutes')             //
 //////////////////IMPORTING ROUTES/////////////////////////////////
 
@@ -58,7 +57,6 @@ mongoose.connection.on('connected', () => {              //
 
 
 //////////////////USING THE ROUTES/////////////////////////
-app.use('/api/categories',categoriesRoutes)              //
-app.use('/api/products',productsRoutes)                  //
+                                                         //
 app.use('/api/inbox',inboxRoutes)                        //
 //////////////////USING THE ROUTES/////////////////////////

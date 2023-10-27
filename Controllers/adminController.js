@@ -15,7 +15,7 @@ const authenticate = async(req,res) =>{
             res.status(200).json({message:'Admin access granted'});
         }else{
             // No admin with matching credetials found
-            res.status(400).json({error:'access forbidden'})
+            res.status(400).json({error:'access denied'})
         }
 
 

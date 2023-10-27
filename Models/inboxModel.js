@@ -1,35 +1,29 @@
-const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
 
-const Inbox = new Schema(
-    {
-        firstName : 
-        {
-            type : String,
-            required: true
-        },
+const Schema = mongoose.Schema;
 
-        lastName :
-        {
-            type : String,
-            required: true
-        },
-        email :
-        {
-            type: String,
-            required: true
-        },
-        status :
-        {
-            type: Boolean,
-        },
-        message :
-        {
-            type: String,
-            required: true
-        }
-    }, {timestamps: true}
+const Inbox = new Schema({
+    firstName:{
+        type: String,
+        required: true
+    },
+    lastName:{
+        type: String,
+        required: true
+    },
+    email:{
+        type: String,
+        required: true
+    },
+    status:{
+        type:Boolean,
+        default:false
+    },
+    message:{
+        type:String,
+        required:true
+    }
 
-)
-module.exports = mongoose.model('Inbox', Inbox)
+})
+module.exports = mongoose.model('Inbox',Inbox);

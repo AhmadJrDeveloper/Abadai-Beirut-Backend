@@ -1,26 +1,19 @@
-const express = require('express')
-const app = express();
 
+const express = require('express');
 const router = express.Router()
+const {getMessage,updateMessage,addMessage,deleteMessage,getMessageById} = require('../Controllers/inboxController')
 
-router.get('/', (req,res) => {
-    res.json({mssg:'gets all the messages'})
-})
 
-router.get('/:id', (req,res) => {
-    res.json({mssg:'get a single message'})
-})
 
-router.delete('/:id', (req,res) => {
-    res.json({mssg:'delete a single message'})
-})
+router.get('/', getMessage)
 
-router.patch('/:id', (req,res) => {
-    res.json({mssg:'update a single message'})
-})
+router.get('/:id', getMessageById)
 
-router.post('/:id', (req,res) => {
-    res.json({mssg:'create a new message'})
-})
+router.post('/',addMessage)
 
-module.exports = router
+router.delete('/:id', deleteMessage)
+
+router.patch('/:id', updateMessage)
+
+module.exports = router;
+

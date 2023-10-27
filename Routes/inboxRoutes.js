@@ -1,35 +1,26 @@
 const express = require('express')
 const app = express();
+
 const router = express.Router()
 
-// Get all messages
-
-router.get('/',(req,res)=>{
-    console.log("view all messages");
-
+router.get('/', (req,res) => {
+    res.json({mssg:'gets all the messages'})
 })
 
-
-// GET a single Message
-router.get('/:id', (req,res)=>{
-    console.log("view a single Message");
-
-})
-// POST a new Message
-router.post('/', (req,res)=>{
-    console.log("Add new Message")
-
-})
-// DELETE a Message
-router.delete('/:id',(req,res)=>{
-    console.log("delete a Message")
-
+router.get('/:id', (req,res) => {
+    res.json({mssg:'get a single message'})
 })
 
-
-// UPDATE a Message
-router.patch('/:id',(req,res)=>{
-    console.log("update a message")
-
+router.delete('/:id', (req,res) => {
+    res.json({mssg:'delete a single message'})
 })
+
+router.patch('/:id', (req,res) => {
+    res.json({mssg:'update a single message'})
+})
+
+router.post('/:id', (req,res) => {
+    res.json({mssg:'create a new message'})
+})
+
 module.exports = router

@@ -34,6 +34,33 @@ const viewProduct = async (req, res) =>{
     res.status(200).json(product)
 }
 
+// get by category id
+const viewByCategory = async (req, res) =>{
+
+    const {category} = req.body
+    try{
+        // Query the data base to find an admin with the same username and password
+        const match = await Products.findOne(category);
+
+        if(match){
+            // admin with the provided username and password found
+            res.status(200).json(match);
+        }else{
+            // No admin with matching credetials found
+            res.status(400).json({error:'access forbidden'})
+        }
+
+
+    } 
+    catch(error) {
+        // Handle any database query errors here
+        res.status(500).json({error:'Internal server error'});
+    }
+
+    
+
+}
+
 
 // to add a product
 const addProduct = async (req, res) =>{
@@ -96,4 +123,4 @@ const deleteProduct = async (req, res) =>{
 
 
 
-module.exports = {getProducts, addProduct, deleteProduct, viewProduct, editProduct};
+module.exports = {getProducts, addProduct, deleteProduct, viewProduct, editProduct, viewByCategory};

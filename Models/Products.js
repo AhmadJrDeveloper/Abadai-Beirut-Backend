@@ -25,6 +25,10 @@ const Products = new Schema(
             type:Number,
             required: true
         },
+        category:
+        {
+            type: mongoose.Types.ObjectId, ref: 'Category',
+        },
         recommended:
         {
             type:Boolean ,

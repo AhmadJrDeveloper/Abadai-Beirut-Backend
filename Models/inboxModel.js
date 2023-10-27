@@ -25,4 +25,4 @@ const Inbox = new Schema({
     }
 
 })
-module.exports = mongoose.model('inboxes',Inbox);
+module.exports = mongoose.model('Inbox',Inbox);

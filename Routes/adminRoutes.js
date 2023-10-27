@@ -1,11 +1,12 @@
-const express = require('express')
-const app = express();
+const {authenticate, addAdmin} = require('../Controllers/adminController');
 
-const router = express.Router()
 
-router.post('/:id', (req,res) => {
-    res.json({mssg: 'create chi'})
-} )
+// check the password and username
+router.post('/signin', authenticate)
 
+
+
+// Create a new record
+router.post('/addRecord',addAdmin);
 
 module.exports = router

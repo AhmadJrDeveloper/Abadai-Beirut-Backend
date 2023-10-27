@@ -1,4 +1,3 @@
-
 require('dotenv').config()
 const express = require('express');
 const categoriesRoutes = require('./Routes/categoriesRoutes')
@@ -22,7 +21,6 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((error) => {
     console.error(error);
 })
-
 //middlewear function//
 
 app.use(express.json())

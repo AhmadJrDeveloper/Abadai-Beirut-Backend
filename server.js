@@ -35,7 +35,7 @@ app.use((req, res, next) => {                            //
 
 //////////////////CONNECT TO DB////////////////////////////
 const mongoose = require("mongoose")                     //
-const uri = process.env.URI                              //       
+const uri = process.env.MONGO_URI                              //       
 mongoose.connect(uri);                                   //
 //////////////////CONNECT TO DB////////////////////////////
 

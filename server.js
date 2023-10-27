@@ -1,3 +1,4 @@
+
 require('dotenv').config()
 const express = require('express');
 const categoriesRoutes = require('./Routes/categoriesRoutes')
@@ -32,3 +33,4 @@ app.use((req, res, next) => {
 app.use('/api/categories', categoriesRoutes)
 // app.use('/api/inbox', inboxRoutes)
 // app.use('/api/products', productsRoutes)
+

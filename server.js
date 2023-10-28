@@ -1,9 +1,10 @@
-
 require('dotenv').config()
 const express = require('express');
 const categoriesRoutes = require('./Routes/categoriesRoutes')
-// const inboxRoutes = require('./Routes/inboxRoutes')
-// const productsRoutes = require('./Routes/productsRoutes')
+const inboxRoutes = require('./Routes/inboxRoutes')
+const productsRoutes = require('./Routes/productsRoutes')
+const adminRoutes = require('./Routes/adminRoutes')
+
 //express app
 const app = express();
 const mongoose = require('mongoose');
@@ -20,7 +21,6 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((error) => {
     console.error(error);
 })
-
 //middlewear function//
 
 app.use(express.json())
@@ -31,6 +31,6 @@ app.use((req, res, next) => {
 
 
 app.use('/api/categories', categoriesRoutes)
-// app.use('/api/inbox', inboxRoutes)
-// app.use('/api/products', productsRoutes)
-
+app.use('/api/inbox', inboxRoutes)
+app.use('/api/products', productsRoutes)
+app.use('/api/admin', adminRoutes)

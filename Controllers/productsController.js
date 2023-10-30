@@ -90,7 +90,10 @@ const editProduct = async (req, res) =>{
         {
             ...req.body,
                 image
-        })
+        },{
+            new: true,
+            // upsert: true // Make this update into an upsert
+          })
 
         if(!product)
         {

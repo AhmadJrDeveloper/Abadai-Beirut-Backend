@@ -35,8 +35,7 @@ const Products = new Schema(
         {
             type:Boolean ,
             default: false
-            
-
+          
         
         }
 

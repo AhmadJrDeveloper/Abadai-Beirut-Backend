@@ -13,6 +13,9 @@ const Categories = new Schema(
         image :
         {
             type : String
+        },
+        productId: {
+            type:mongoose.Types.ObjectId, ref: 'Product',
         }
     }
 )

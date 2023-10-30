@@ -117,10 +117,20 @@ const deleteProduct = async (req, res) =>{
     res.status(200).json(product)
 }
 
+const searchProduct = async (req, res) => {
+    const search = req.query.search||"";
+    const products = await Products.find(
+        {name:{$regex:search,$options:"i"}}
+        
+    )
+    res.status(200).json(products)
+}
+
+
 
 // upload image
 
 
 
 
-module.exports = {getProducts, addProduct, deleteProduct, viewProduct, editProduct, viewByCategory};
+module.exports = {getProducts, addProduct, deleteProduct, viewProduct, editProduct, viewByCategory, searchProduct};

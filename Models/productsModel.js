@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema
-
+const Category = require('../Models/categoriesModel')
 const Products = new Schema(
     {
         name:
@@ -27,7 +26,7 @@ const Products = new Schema(
         },
         category:
         {
-            type: mongoose.Types.ObjectId, ref: 'Category',
+            type: mongoose.Types.ObjectId, ref: 'Category'
         },
         recommended:
         {

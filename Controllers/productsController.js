@@ -118,8 +118,6 @@ const deleteProduct = async (req, res) =>{
 }
 
 
-// upload image
-
 
 
 

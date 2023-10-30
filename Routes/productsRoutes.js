@@ -1,14 +1,12 @@
 const express = require('express')
 const app = express();
 const router = express.Router()
-const {getProducts,addProduct, deleteProduct, viewProduct, editProduct, viewByCategory} = require('../Controllers/productsController')
+const {getProducts,addProduct, deleteProduct, viewProduct, editProduct, viewByCategory,searchProduct} = require('../Controllers/productsController')
 
 
 // Get all Products
 
 router.get('/',getProducts);
-
-
 // GET a single Products
 router.get('/:id', viewProduct)
 // POST a new Products

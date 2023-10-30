@@ -23,12 +23,14 @@ const getCategory = async (req, res) =>
 }
 
 
+
 // Create a new category
 const createCategory = async (req, res) => 
 {
-    const {name, image} = req.body
+    const {name} = req.body
 
     try {
+        const image = req.file ? req.file.path:'';
     const category = await Category.create({name, image})
     res.status(200).json(category)
     } catch (error) {
@@ -55,11 +57,12 @@ const deleteCategory = async (req,res) =>
 //update category
 const updateCategory = async (req,res) => {
     const { id } = req.params
+    const image = req.file ? req.file.path:'';
 
     if(!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No such category'})
     }
-    const category = await Category.findByIdAndUpdate({_id: id}, {...req.body})
+    const category = await Category.findByIdAndUpdate({_id: id}, {...req.body,image})
 
     if(!category) {
         res.status(404).json(category)

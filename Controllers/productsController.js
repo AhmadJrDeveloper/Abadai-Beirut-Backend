@@ -15,6 +15,27 @@ const getProducts = async (req, res) =>{
 
 }
 
+// Get Products by Category ID
+
+const getProductsByCategory = async (req, res) =>{
+    const {id} = req.params;
+    if(!mongoose.Types.ObjectId.isValid(id))
+    {
+        return res.status(404).json({error: "No such Category"})
+
+    }
+    const product = (await Products.find({categoryId:id})
+    .populate({
+        path:'categoryId',
+        select:"name"}));
+    if(!product)
+    {
+        return res.status(404).json({error: "Not Found"})
+    }
+    res.status(200).json(product)
+
+}
+
 // View single product
 
 const viewProduct = async (req, res) =>{
@@ -34,39 +55,17 @@ const viewProduct = async (req, res) =>{
     res.status(200).json(product)
 }
 
-// get by category id
-const viewByCategory = async (req, res) =>{
-
-    const {category} = req.body
-    try{
-        // Query the data base to find an admin with the same username and password
-        const match = await Products.findOne(category);
-
-        if(match){
-            // admin with the provided username and password found
-            res.status(200).json(match);
-        }else{
-            // No admin with matching credetials found
-            res.status(400).json({error:'access forbidden'})
-        }
-
-
-    } 
-    catch(error) {
-        // Handle any database query errors here
-        res.status(500).json({error:'Internal server error'});
-    }
 
     
 
-}
 
 
 // to add a product
 const addProduct = async (req, res) =>{
-    const {name, description, image, price, recommended} = req.body;
+    const {name, description, price, recommended,categoryId} = req.body;
+    const image = req.file ? req.file.path:'';
     try{
-        const products = await Products.create({name, description, image, price,recommended})
+        const products = await Products.create({name, description, image, price,recommended,categoryId})
         res.status(200).json(products)
         
         
@@ -80,6 +79,7 @@ const addProduct = async (req, res) =>{
 // Edit a product
 const editProduct = async (req, res) =>{
     const { id } = req.params;
+    const image = req.file ? req.file.path:'';
 
     if(!mongoose.Types.ObjectId.isValid(id))
     {
@@ -88,7 +88,8 @@ const editProduct = async (req, res) =>{
 
     const product = await Products.findOneAndUpdate({_id:id},
         {
-            ...req.body
+            ...req.body,
+                image
         })
 
         if(!product)
@@ -118,9 +119,18 @@ const deleteProduct = async (req, res) =>{
 }
 
 
-// upload image
+// get all bestsellers
+
+const getBestsellers = async (req, res) =>{
+    const recommended = await Products.find({'recommended': {$ne : false}});
+    if(!recommended)
+    {
+        return res.status(404).json({error: "Not Found"})
+    }
+    res.status(200).json(recommended)
+}
 
 
 
 
-module.exports = {getProducts, addProduct, deleteProduct, viewProduct, editProduct, viewByCategory};
+module.exports = {getProducts, addProduct, deleteProduct, viewProduct, editProduct,getProductsByCategory,getBestsellers};

@@ -24,6 +24,8 @@ const Inbox = new Schema({
         type:String,
         required:true
     }
+    
+
    
 
 })

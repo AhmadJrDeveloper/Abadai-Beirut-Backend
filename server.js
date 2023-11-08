@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express');
+const cors = require('cors');
 const categoriesRoutes = require('./Routes/categoriesRoutes')
 const inboxRoutes = require('./Routes/inboxRoutes')
 const productsRoutes = require('./Routes/productsRoutes')
@@ -8,6 +9,10 @@ const adminRoutes = require('./Routes/adminRoutes')
 //express app
 const app = express();
 const mongoose = require('mongoose');
+app.use(express.json());
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 
 //connecting to mongo db//
@@ -15,7 +20,7 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     app.listen(process.env.PORT, () => {
-        console.log(`connected to db & running on port`, process.env.PORT );
+        console.log("connected to db & running on port", process.env.PORT);
     }); 
 })
 .catch((error) => {

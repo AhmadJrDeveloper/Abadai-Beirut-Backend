@@ -8,8 +8,6 @@ const {getProducts,addProduct, deleteProduct, viewProduct, editProduct,getBestse
 // Get all Products
 
 router.get('/',getProducts);
-
-
 // GET a single Products
 router.get('/:id', viewProduct)
 // POST a new Products

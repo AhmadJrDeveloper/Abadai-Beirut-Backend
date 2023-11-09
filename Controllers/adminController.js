@@ -13,9 +13,11 @@ const authenticate = async(req,res) =>{
         if(admin){
             // admin with the provided username and password found
             res.status(200).json({message:'Admin access granted'});
+            return true
         }else{
             // No admin with matching credetials found
             res.status(400).json({error:'access denied'})
+            return false
         }
 
 

@@ -10,7 +10,7 @@ const getMessage = async(req,res) => {
 
     }
     catch (error){
-        res.status(500).json({ error: error.message });
+        res.status(500).json({mssg: "you have zero inbox"});
 
     }
 };
@@ -19,7 +19,7 @@ const getMessage = async(req,res) => {
 
 /////////////////////////////////////////////////ADD FUNCTION//////////////////////////
 const addMessage =  async (req, res) => {                                            //
-    const{firstName, lastName, email, status, message} = req.body                    //
+    const{firstName, lastName, email, status, message, time} = req.body                    //
     try{                                                                             //
         const inbox = await Inbox.create({firstName, lastName, email, status, message})
         res.status(200).json(inbox)                                                  //

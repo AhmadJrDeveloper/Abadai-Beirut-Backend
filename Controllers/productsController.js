@@ -79,21 +79,34 @@ const addProduct = async (req, res) =>{
 // Edit a product
 const editProduct = async (req, res) =>{
     const { id } = req.params;
-    const image = req.file ? req.file.path:'';
 
     if(!mongoose.Types.ObjectId.isValid(id))
     {
         return res.status(404).json({error:"no such workout"})
     }
+    
+    const image = req.file ? req.file.path:null;
+    var product;
 
-    const product = await Products.findOneAndUpdate({_id:id},
-        {
-            ...req.body,
-                image
-        },{
-            new: true,
-            // upsert: true // Make this update into an upsert
-          })
+    if(image){
+         product = await Products.findOneAndUpdate({_id:id},
+            {
+                ...req.body,
+                    image
+            },{
+                new: true,
+                // upsert: true // Make this update into an upsert
+              })
+    }
+    else{
+         product = await Products.findOneAndUpdate({_id:id},
+            {
+                ...req.body,
+            },{
+                new: true,
+                // upsert: true // Make this update into an upsert
+              })
+    }
 
         if(!product)
         {

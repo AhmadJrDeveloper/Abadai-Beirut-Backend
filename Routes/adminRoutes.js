@@ -11,3 +11,4 @@ router.post('/signin', authenticate)
 router.post('/addRecord',addAdmin);
 
 module.exports = router
+

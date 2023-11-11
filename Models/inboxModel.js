@@ -24,6 +24,9 @@ const Inbox = new Schema({
         type:String,
         required:true
     }
+    
+
+   
 
 })
 module.exports = mongoose.model('Inbox',Inbox);
